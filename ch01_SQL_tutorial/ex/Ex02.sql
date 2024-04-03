@@ -1,5 +1,8 @@
--- `LibraryManagement`** 데이터베이스는 도서관 관리 시스템을 위한 데이터베이스입니다. 
--- 이 시스템은 도서(Books), 회원(Members), 대출 기록(BorrowRecords) 등 주요 정보를 관리합니다.
+-- Ex. `LibraryManagement`** 데이터베이스는 도서관 관리 시스템을 위한 데이터베이스입니다. 
+	-- 이 시스템은 도서(Books), 회원(Members), 대출 기록(BorrowRecords) 등 주요 정보를 관리합니다.
+CREATE DATABASE libraryManagement;
+USE libraryManagement;
+
 /* 
 	1. Books 테이블: 도서 정보를 저장합니다.
 		- `BookID` (정수형, 기본 키, 자동 증가): 도서의 고유 번호입니다.
@@ -19,6 +22,7 @@ CREATE TABLE books(
     genre VARCHAR(255) NOT NULL
 );
 DESC books;
+SELECT * FROM books;
 
 /*
 	2. Members 테이블: 도서관 회원 정보를 저장합니다.
@@ -33,10 +37,10 @@ DESC books;
 DROP TABLE members;
 CREATE TABLE members(
 	memberID INT AUTO_INCREMENT PRIMARY KEY,
-    firstName VARCHAR(255) NOT NULL,
-    lastName VARCHAR(255) NOT NULL,
+    firstName VARCHAR(255) NOT NULL CHECK (firstName != ''),
+    lastName VARCHAR(255) NOT NULL CHECK (lastName != ''),
     email VARCHAR(255) NOT NULL UNIQUE,
-    membershipDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    membershipDate DATE DEFAULT (CURRENT_DATE)
 );
 DESC members;
 
@@ -58,7 +62,9 @@ CREATE TABLE borrowRecords(
     bookID INT,
     borrowDate DATE,
     returnDate DATE,
-    FOREIGN KEY (memberID) REFERENCES members(memberID),
+    FOREIGN KEY (memberID) REFERENCES members(memberID)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
     FOREIGN KEY (bookID) REFERENCES books(bookID)
     ON DELETE CASCADE
     ON UPDATE NO ACTION
