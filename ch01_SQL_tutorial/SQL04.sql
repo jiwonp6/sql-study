@@ -50,3 +50,23 @@ CREATE TABLE adults(
 DESC adults;
 
 SELECT * FROM adults;
+
+-- DEFAULT 제약조건 (각 컬럼에 대한 기본 값 지정)
+CREATE TABLE persons (
+	id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    status VARCHAR(50) DEFAULT '활동중',				-- 상태 열 기본값 : '활동줄'
+    join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP	-- 가입일 기본값 : 현재 날짜와 시간
+);
+DESC persons;
+SELECT * FROM persons;
+DROP TABLE persons;
+
+-- AUTO_INCREMENT : 데이터베이스에서 자동으로 값이 증가하는 열 설정
+	-- 일반적으로 기본키 컬럼에 사용됨.
+CREATE TABLE products (
+	product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(250) NOT NULL
+);
+DESC products;
+SELECT * FROM products;
