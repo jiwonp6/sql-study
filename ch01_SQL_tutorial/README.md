@@ -59,12 +59,12 @@
 
 ### - 스키마와 상태
   - 스키마 : DB의 구조나 설계
-     - 구체적인 데이터 항목이나 값은 포함하지 않음.
+     - 구체적인 데이터 항목이나 값은 포함하지 않음
      - 데이터베이스 설계과정 초기에 정의되고, 시간이 지나도 상대적으로 변경되지 않음
      - 정적인 특성, 근본적인 요소
   - 상태(Status) : 특정 시점에 데이터베이스 실제로 저장된 데이터베이스의 집합
      - 시간에 따라 변할 수 있고, 지속적으로 업데이트
-     - DB의 일관성과 무결성을 유지하기 위해, 스키마의 규칙과 제약조건을 따라야 함.
+     - DB의 일관성과 무결성을 유지하기 위해, 스키마의 규칙과 제약조건을 따라야 함
      - 동적인 특성,  변화하는 데이터의 실체
 
 # * 3 Schema Architecture
@@ -79,9 +79,12 @@
  : 관계형 데이터베이스(RDBMS)에서 데이터를 관리하기 위해 사용하는 표준화된 언어
 
  - 데이터 정의 언어 (Data Definition Language) : DDL
+     -> CREATE, ALTER, DROP, TRUNCATE, RENAME
  - 데이터 조작 언어 (Data Manipulation Language) : DML
+     -> INSERT, UPDATE, DELETE
  - 데이터 질의 언어 (Data Query Language) : DQL
  - 데이터 제어 언어 (Data Control Language) : DCL
+     -> GRANT, REVOKE
  - 트랜잭션 제어 언어 (Transaction Control Language) : TCL
 
 ### - DCL (Data Control Language)
@@ -268,6 +271,22 @@ CREATE TABLE 테이블명 (
       ```SQL
       ALTER TABLE 테이블명
       RENAME TO 새로운테이블명;
-      ```      
+      ```
 
+### - CONSTRAINT 제약조건명 (제약조건 이름 명시하기)
+ - 제약조건은 생성 시 이름을 생략하고 만들 수 있음
+ - 생략하고 만들 경우 자동으로 제약조건의 이름이 부여 됨
+ - 생성 시 `CONSTRAINT 제약조건명` 이 부여되면, 제약조건 이름을 명시할 수 있음
+ - 제약조건의 이름을 확인하기 위해서는 DB객체나 DDL을 확인하면 됨
+```sql
+-- 1. information_schema 오브젝트를 통해 확인
+   -- CONTRAINT_NAME 필드 : 제약조건의 이름
+   SELECT * FROM information_schema.table_constraints
+   WHERE table_name = '테이블명';  -- 테이블명
+
+-- 2. DDL을 통해 확인
+-- SHOW CREATE TABLE 스키마명.테이블명;
+-- 워크벤치의 경우 open value in viewer
+   SHOW CREATE TABLE employees;
+```
 

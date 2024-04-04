@@ -28,7 +28,13 @@ ALTER TABLE employees
 ALTER TABLE employees
 	ADD COLUMN salary INT COMMENT '직원의 급여와 관련된 속성';
     
-/* 제약조건 삭제하기 */
+/* 제약조건 삭제하기 (제약조건 이름으로 삭제)*/
+-- ★ 제약조건 이름 확인하기
+SELECT * 						-- information_schema 오브젝트를 통해 확인
+	FROM information_schema.table_constraints
+	WHERE table_name = 'employees';
+SHOW CREATE TABLE employees;	-- DDL 을 통해 확인
+
 -- 1. FOREIGN KEY 삭제하기
 ALTER TABLE employees 
 	DROP FOREIGN KEY fk_department_id;
