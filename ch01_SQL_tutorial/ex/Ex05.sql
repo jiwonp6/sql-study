@@ -15,7 +15,7 @@ SELECT *
 ALTER TABLE members
 	DROP CONSTRAINT email;
 -- 확인
-SELECT * FROM members;
+DESC members;
 
 -- 문제 3: `BorrowRecords` 테이블에 `Status` 열 추가하기
 	-- `BorrowRecords` 테이블에 대출 상태를 나타내는 `Status` 열을 추가하세요. 가능한 값은 'Borrowed', 'Returned'입니다.
