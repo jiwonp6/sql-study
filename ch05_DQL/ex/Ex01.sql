@@ -1,5 +1,6 @@
 -- Ex
 USE scott;
+
 -- 문제 1: EMP 테이블에서 모든 정보를 조회하세요.
 SELECT * FROM emp;
 
