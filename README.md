@@ -14,7 +14,7 @@
     2. 데이터 조작 언어 (Data Manipulation Language) : DML
         -> INSERT, UPDATE, DELETE
     3. 데이터 질의 언어 (Data Query Language) : DQL
-        -> SELECT
+        -> SELECT, GROUPING, JOIN
     4. 데이터 제어 언어 (Data Control Language) : DCL
         -> GRANT, REVOKE
     5. 트랜잭션 제어 언어 (Transaction Control Language) : TCL
@@ -39,3 +39,7 @@
 5. DQL
     - SELECT
         : 선택 조건을 만족하는 정보 조회 시 사용
+    - GROUPING (집계 함수)
+        : 데이터베이스에서 여러 행으로부터 단일 결과 값을 도출하는 데 사용 (COUNT, SUM, AVG, MIN, MAX 등)
+    - JOIN
+        : 두 개 이상의 테이블을 묶어서(결합하여) 새로운 결과 집합(result set)을 만들어내는 것

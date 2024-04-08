@@ -4,7 +4,7 @@
  - 데이터 정의 언어 (Data Definition Language) : **DDL**
  - 데이터 조작 언어 (Data Manipulation Language) : **DML**
  - 데이터 질의 언어 (Data Query Language) : **DQL**
-     -> SELECT 
+     -> SELECT, GROUPING, JOIN
      (WHERE - NOT, BETWEEN ~ AND, IN(), LIKE, ORDER BY, LIMIT, OFFSET, DISTINCT)
  - 데이터 제어 언어 (Data Control Language) : **DCL**
  - 트랜잭션 제어 언어 (Transaction Control Language) : **TCL**
