@@ -125,4 +125,35 @@ SELECT 컬럼명1, 컬럼명2, ...
       WITH ROLLUP;
     ```
 
+#### * 데이터 결합 - JOIN
+  - Join : 두 개 이상의 테이블을 묶어서(결합하여) 새로운 결과 집합(result set)을 만들어내는 것
+  - Join의 종류
+    - 암시적 Join (Implicit Join) : WHERE 절에 JOIN 컨디션을 명시하는 방식
+    - 명시적 Join (Explicit Join) : 키워드를 사용해서 테이블을 결합하고, ON 키워드에 JOIN 컨디션 명시하는 방식
+        ```sql
+          SELECT 테이블명.컬럼명, ..
+            FROM 테이블명1
+            [INNER|LEFT|RIGHT] JOIN 테이블명2 ON 테이블1.공통컬럼 = 테이블2.공통컬럼
+        ```
+        - JOIN 다음에 결합한 테이블명
+        - ON 다음에 (join condition)
+        - 일반적으로 테이블명을 줄인 약칭을 사용
+        - JOIN 키워드 앞에 [INNER|LEFT|RIGHT] 생략할 경우 INNER JOIN
+      1. Inner Join : 두 테이블의 교집합
+          - 양쪽 테이블에 모두 존재하는 데이터를 결합    
+      2. Outer Join
+          - 다른 테이블 결합이 매칭 되지 않는 경우도 데이터 포함
+          (1) Left Outer Join
+          (2) Right Outer Join
+          (3) Full Outer Join
+      3. Self Join : 같은 테이블을 두 번 참조하여 결합
+      4. Cross Join : 두 테이블 간의 가능한 모든 조합
+          - Cartesian Product
+    - 등가 Join (Equi Join) : 등호(=)을 통해서 2개 이상의 테이블 결합
+    - 비등가 Join (Non-Equi Join) : 등호를 제외한 비교연산자를 통해 테이블 결합
+  - USING 구문과 NATRUAL JOIN
+    - USING : 두 테이블에서 공통된 열 이름이 있을 때 유용
+    - NATURAL JOIN : 공통 열이 존재할 때 조건 명시 없이 사용
+    - 가독성 및 간결성 향상
+    - ※ 서로 다른 테이블의 조인 조건과 별개의 동일이름 동일타입이 존재할 경우, 예측 불가능한 결과를 가져올 수 있음
 
