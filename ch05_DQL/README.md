@@ -4,7 +4,7 @@
  - 데이터 정의 언어 (Data Definition Language) : **DDL**
  - 데이터 조작 언어 (Data Manipulation Language) : **DML**
  - 데이터 질의 언어 (Data Query Language) : **DQL**
-     -> SELECT, GROUPING, JOIN
+     -> SELECT, GROUPING, JOIN, SUBQUERY
      (WHERE - NOT, BETWEEN ~ AND, IN(), LIKE, ORDER BY, LIMIT, OFFSET, DISTINCT)
  - 데이터 제어 언어 (Data Control Language) : **DCL**
  - 트랜잭션 제어 언어 (Transaction Control Language) : **TCL**
@@ -157,3 +157,37 @@ SELECT 컬럼명1, 컬럼명2, ...
     - 가독성 및 간결성 향상
     - ※ 서로 다른 테이블의 조인 조건과 별개의 동일이름 동일타입이 존재할 경우, 예측 불가능한 결과를 가져올 수 있음
 
+#### * SubQuery(서브쿼리, 부속질의)
+  - 다른 SQL 쿼리 내부에 포함되어 있는 쿼리
+    - 주 쿼리 (Main Query)
+    - 부 쿼리 (Sub Query)
+  - 서브쿼리는 괄호 ( ... ) 내부에 작성이 되어 주 쿼리와 구분됨
+  - 서브쿼리의 결과는 단일 행 또는 다중 행 결과를 반환
+  - 서브쿼리는 주 쿼리보다 먼저 실행되고, 서브쿼리의 결과 주 쿼리에 사용
+  - 서브쿼리의 사용
+    - WHERE절, SELECT절, FROM절, HAVING절 등 (WHERE절 : 데이터 필터링을 하기 위해 사용)
+  1. 단일 행(single row) 서브쿼리
+    - 반드시 하나의 행만 반환해야 함
+    - 하나의 결과값만 나오는 쿼리를 서브쿼리로 작성하거나 집계함수 등을 사용하여 반드시 하나의 행이 결과값으로 갖도록 보장해야 함
+    - 단일행 서브쿼리는 =, >, < 등의 비교연산자와 함께 사용
+    ```sql
+    SELECT 컬럼명, .. FROM 테이블명 WHERE 조건 = ( 서브쿼리 );
+    ```
+  2. 다중 행(multi row) 서브쿼리
+    - 쿼리 실행 결과로 여러 행을 반환하는 서브쿼리
+    - IN, ANY, ALL, EXISTS 등의 연산자와 함께 사용
+    ```sql
+    SELECT 컬럼명, .. FROM 테이블명 WHERE IN ( 서브쿼리 );
+    ```
+    (1) IN(서브쿼리) : 메인쿼리의 비교 조건이 서브쿼리 결과 중 하나라도 동일하면 참
+    (2) ANY(서브쿼리) : 메인쿼리의 비교 조건이 서브쿼리 결과 중 하나라도 동일하면 참
+        - IN은 비교연산자 사용 X, ANY는 비교 연산자 사용 O
+    (3) ALL(서브쿼리) : 메인쿼리의 비교 조건이 서브쿼리 결과 중 모두 동일하면 참
+        - 비교연산자 사용
+        - 비교조건 < ALL (10, 20, 30) : 최소값 (10보다 작은)
+        - 비교조건 > ALL (10, 20, 30) : 최대값 (30보다 큰)
+    (4) EXISTS(서브쿼리) : 서브쿼리의 결과가 하나라도 존재하면 참
+  - 서브쿼리를 사용하는 위치에 따라 분류
+    (1) WHERE절 : 특정 기준에 맞는 데이터 필터링을 위해 서브쿼리 사용
+    (2) SELECT절 : 서브쿼리를 사용한 결과 값을, 메인쿼리의 결과에 포함
+    (3) FROM절 : 인라인 뷰(Inline View), 서브쿼리가 임시 테이블처럼 동작하게 하여 메인 쿼리에 사용
