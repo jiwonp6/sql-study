@@ -18,6 +18,7 @@
     4. 데이터 제어 언어 (Data Control Language) : DCL
         -> GRANT, REVOKE
     5. 트랜잭션 제어 언어 (Transaction Control Language) : TCL
+        -> COMMIT, ROLLBACK, SAVEPOINT
 
 2. DCL
     - GRANT
@@ -43,3 +44,11 @@
         : 데이터베이스에서 여러 행으로부터 단일 결과 값을 도출하는 데 사용 (COUNT, SUM, AVG, MIN, MAX 등)
     - JOIN
         : 두 개 이상의 테이블을 묶어서(결합하여) 새로운 결과 집합(result set)을 만들어내는 것
+
+6. TCL
+    - COMMIT
+        : 트랜잭션 종료. 변경사항 영구적 반영
+    - ROLLBACK
+        : 트랜잭션을 마지막 COMMIT 상태로 복원
+    - SAVEPOINT
+        : 트랜잭션 내 중간지점을 설정

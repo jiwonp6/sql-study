@@ -1,0 +1,32 @@
+-- 다른 세션 : 쓰기 트랜잭션
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
+USE tcl;
+
+/* 1. READ UNCOMMITTED */
+START TRANSACTION;
+UPDATE person 
+	SET age = 35
+    WHERE name = '홍길동';
+ROLLBACK;
+
+/* 2. READ COMMITTED */
+START TRANSACTION;
+UPDATE person 
+	SET age = 35
+    WHERE name = '홍길동';
+COMMIT;
+
+/* 3. REPEATABLE READ */
+START TRANSACTION;
+UPDATE person 
+	SET age = 35
+    WHERE name = '홍길동';
+COMMIT;
+
+/* 4. SERIALIZABLE */
+START TRANSACTION;
+UPDATE person 		-- 쓰기 불가
+	SET age = 40
+    WHERE name = '홍길동';
+COMMIT;
